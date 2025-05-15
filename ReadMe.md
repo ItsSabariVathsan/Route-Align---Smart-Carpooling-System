@@ -116,21 +116,17 @@ python app.py
 
 ---
 ## Screenshots
-
-![[Login Page.png]]
-
-![[Create Account.png]]
-- Dashboard with ride offers and requests
-![[Ride Requests.png]]
-
-![[Offer a Ride.png]]
-##### ![[Request a Ride.png]]
----
-## Diagrams
+![Create Account](https://github.com/user-attachments/assets/28dbc803-396b-4a3d-845c-37f8a4e7f3da)
+![Login Page](https://github.com/user-attachments/assets/c4eb1f6c-4a4a-43ae-a1cd-56493b18b901)
+![Dashboard](https://github.com/user-attachments/assets/bfd672a0-353e-483c-8826-8454e93d61de)
+![Offer a Ride](https://github.com/user-attachments/assets/6e3311b9-fb33-45f6-9265-42bc4914d8a5)
+![Available Rides](https://github.com/user-attachments/assets/a9939609-29cd-458b-b723-7e4650c455cd)
+![Request a Ride](https://github.com/user-attachments/assets/58871cff-7024-46f6-b22b-6b48597367e7)
+![Ride Requests](https://github.com/user-attachments/assets/64bd2ad0-01ff-49fe-a78e-7f93cb9e09d3)
 
 System architecture diagram
 
-![[Full Arch Diagram.png]]
+![Full Arch Diagram](https://github.com/user-attachments/assets/00d9aca3-f428-4261-b6a1-ff341ceed371)
 
 ---
 ## Technologies Used

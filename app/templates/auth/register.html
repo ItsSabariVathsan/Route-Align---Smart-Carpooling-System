@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        background: #f0f2f5;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .register-wrapper {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .register-illustration {
+        background: linear-gradient(to right, #3498db, #8e44ad);
+        color: white;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 50px;
+    }
+
+    .register-illustration h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .register-illustration p {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+        opacity: 0.95;
+    }
+
+    .register-form-section {
+        flex: 1;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 30px;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .register-card h1 {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+    }
+
+    .btn-register {
+        background: linear-gradient(to right, #3498db, #8e44ad);
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        color: white;
+        border-radius: 30px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-register:hover {
+        background: linear-gradient(to right, #2980b9, #6c3483);
+    }
+
+    .text-muted a {
+        color: #8e44ad;
+        text-decoration: none;
+    }
+
+    .text-muted a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .register-wrapper {
+            flex-direction: column;
+        }
+
+        .register-illustration {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-wrapper">
+    <!-- Left Side Illustration -->
+    <div class="register-illustration">
+        <h2>Route align: Smart carpooling simplified</h2>
+        <p>Route Align is a smart carpooling solution that intelligently matches riders and drivers based on optimal routes and real-time data. It simplifies daily commuting by reducing travel time, costs, and environmental impact.</p>
+        <img src="https://play-lh.googleusercontent.com/qmnqyTmIVVISUie5SfltYIfO5OQNWvWo59hEs9_PZisJ3t7YLPUnsWDT9KUkvv6HLwOB" alt="Register Graphic" class="img-fluid mt-4" style="max-width: 320px;">
+    </div>
+
+    <!-- Right Side Form -->
+    <div class="register-form-section">
+        <div class="register-card">
+            <h1 class="text-center">Create Account</h1>
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    {{ form.username.label(class="form-label") }}
+                    {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else "")) }}
+                    {% for error in form.username.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                    {% for error in form.email.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.phone_number.label(class="form-label") }}
+                    {{ form.phone_number(class="form-control" + (" is-invalid" if form.phone_number.errors else "")) }}
+                    {% for error in form.phone_number.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.role.label(class="form-label") }}
+                    {{ form.role(class="form-select" + (" is-invalid" if form.role.errors else "")) }}
+                    {% for error in form.role.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
+                    {% for error in form.password.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.confirm_password.label(class="form-label") }}
+                    {{ form.confirm_password(class="form-control" + (" is-invalid" if form.confirm_password.errors else "")) }}
+                    {% for error in form.confirm_password.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-grid mb-4">
+                    {{ form.submit(class="btn btn-register btn-lg") }}
+                </div>
+            </form>
+
+            <div class="text-center text-muted">
+                Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}Route align: Smart carpooling simplified{% endblock %}
+
+{% block styles %}
+<style>
+    :root {
+        --primary: #1abc9c;
+        --secondary: #f39c12;
+        --bg-dark: #2c3e50;
+        --bg-light: #ecf0f1;
+        --text-dark: #2d3436;
+        --text-muted: #7f8c8d;
+        --white: #ffffff;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-light);
+        margin: 0;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        text-align: center;
+        padding: 120px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+        margin-bottom: 40px;
+    }
+
+    .btn-main {
+        background-color: var(--white);
+        color: var(--primary);
+        padding: 14px 32px;
+        font-weight: bold;
+        border-radius: 30px;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+    .btn-main:hover {
+        background-color: var(--secondary);
+        color: var(--white);
+    }
+
+    .split-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 60px 0;
+    }
+
+    .split-section:nth-child(even) {
+        background: var(--white);
+    }
+
+    .split-section:nth-child(odd) {
+        background: var(--bg-light);
+    }
+
+    .split-text, .split-image {
+        flex: 1;
+        padding: 40px;
+    }
+
+    .split-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+    }
+
+    .split-text p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+    }
+
+    .stat-box {
+        text-align: center;
+        padding: 30px;
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        color: var(--primary);
+        font-weight: bold;
+    }
+
+    .steps-section {
+        background-color: var(--bg-dark);
+        color: var(--white);
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .step-item {
+        padding: 20px;
+    }
+
+    .step-number {
+        font-size: 2rem;
+        background: var(--secondary);
+        color: var(--white);
+        padding: 20px;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 15px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .split-section {
+            flex-direction: column;
+        }
+
+        .split-text, .split-image {
+            padding: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Route align: Smart carpooling simplified</h1>
+        <p>Route Align is a smart carpooling solution that intelligently matches riders and drivers based on optimal routes and real-time data. It simplifies daily commuting by reducing travel time, costs, and environmental impact.</p>
+
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.register') }}" class="btn btn-main">Get Started</a>
+        {% else %}
+            <a href="{{ url_for('rides.find_ride') }}" class="btn btn-main">Go to Dashboard</a>
+        {% endif %}
+    </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number">{{ total_users }}</div>
+                    <p>Registered Students</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number">{{ total_rides }}</div>
+                    <p>Total Rides Shared</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number">{{ active_rides }}</div>
+                    <p>Active Rides</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE 1 -->
+<section class="split-section">
+    <div class="split-text">
+        <h2>Save Money Together</h2>
+        <p>Ridesharing with your peers means more affordable travel for everyone. Split costs and never overpay again.</p>
+    </div>
+    <div class="split-image">
+        <img src="https://d32ijn7u0aqfv4.cloudfront.net/wp/wp-content/uploads/raw/SOBK0622029_1560x880_desktop.jpeg" class="img-fluid" alt="Save money">
+    </div>
+</section>
+
+<!-- FEATURE 2 -->
+<section class="split-section">
+    <div class="split-image">
+        <img src="https://www.cleanlink.com/resources/editorial/2018/grean-earth-22033.jpg" class="img-fluid" alt="Eco friendly">
+    </div>
+    <div class="split-text">
+        <h2>Eco-Friendly Movement</h2>
+        <p>Fewer cars on the road = cleaner air. Help reduce emissions just by sharing a ride to class.</p>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section">
+    <div class="container">
+        <h2 class="mb-5">How It Works</h2>
+        <div class="row">
+            <div class="col-md-3 step-item">
+                <div class="step-number">1</div>
+                <p>Sign up with your .edu email</p>
+            </div>
+            <div class="col-md-3 step-item">
+                <div class="step-number">2</div>
+                <p>Find or post a ride in seconds</p>
+            </div>
+            <div class="col-md-3 step-item">
+                <div class="step-number">3</div>
+                <p>Chat securely with other students</p>
+            </div>
+            <div class="col-md-3 step-item">
+                <div class="step-number">4</div>
+                <p>Meet up and ride together!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

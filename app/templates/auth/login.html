@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        background: #f3f6fb;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .login-wrapper {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .login-illustration {
+        background: linear-gradient(to bottom right, #16a085, #27ae60);
+        color: white;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .login-illustration h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .login-illustration p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        opacity: 0.9;
+    }
+
+    .login-form-section {
+        flex: 1;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 30px;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .login-card h1 {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+    }
+
+    .btn-login {
+        background-color: #16a085;
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+        background-color: #138d75;
+    }
+
+    .text-muted a {
+        color: #16a085;
+        text-decoration: none;
+    }
+
+    .text-muted a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .login-wrapper {
+            flex-direction: column;
+        }
+
+        .login-illustration {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+    <!-- Left Illustration Panel -->
+    <div class="login-illustration">
+        <h2>Welcome Back!</h2>
+        <p>Route Align is a smart carpooling solution that intelligently matches riders and drivers based on optimal routes and real-time data. It simplifies daily commuting by reducing travel time, costs, and environmental impact.</p>
+        <img src="https://play-lh.googleusercontent.com/qmnqyTmIVVISUie5SfltYIfO5OQNWvWo59hEs9_PZisJ3t7YLPUnsWDT9KUkvv6HLwOB" alt="Login Graphic" class="img-fluid mt-4" style="max-width: 300px;">
+    </div>
+
+    <!-- Right Login Form Panel -->
+    <div class="login-form-section">
+        <div class="login-card">
+            <h1 class="text-center">Login</h1>
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                    {% for error in form.email.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
+                    {% for error in form.password.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-grid mb-3">
+                    {{ form.submit(class="btn btn-login btn-lg") }}
+                </div>
+
+                <div class="text-center text-muted mb-3">
+                    <a href="{{ url_for('auth.reset_password_request') }}">Forgot Password?</a>
+                </div>
+
+                <hr>
+
+                <div class="text-center text-muted">
+                    Don't have an account? <a href="{{ url_for('auth.register') }}">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
